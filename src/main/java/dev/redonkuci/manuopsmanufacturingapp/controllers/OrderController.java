@@ -56,8 +56,4 @@ public class OrderController {
         return "redirect:/orders";
     }
 
-    @GetMapping("/details/{orderNumber}")
-    public String getOrderDetails(@ModelAttribute("orderNumber") String orderNumber, Model model) {
-        return "orders-details";
-    }
 }
