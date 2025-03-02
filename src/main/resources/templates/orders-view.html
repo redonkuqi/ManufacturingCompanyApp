@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders - View - Manufacturing Dashboard</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <script th:src="@{/script.js}"></script>
+</head>
+<body>
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="login-register">
+            <div class="logo">MC</div>
+            <h1>MyCompany</h1>
+            <div class="auth-buttons">
+                <button class="auth-btn">Log In</button>
+                <button class="auth-btn">Register</button>
+            </div>
+        </div>
+        <!-- Theme Selector -->
+        <div class="theme-selector">
+            <h3>Theme</h3>
+            <div class="theme-buttons">
+                <button onclick="setTheme('blue')">Blue</button>
+                <button onclick="setTheme('green')">Green</button>
+                <button onclick="setTheme('dark')">Dark</button>
+            </div>
+        </div>
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a th:href="@{/orders}" class="nav-btn">Orders</a>
+            <a th:href="@{/stock}" class="nav-btn">Stock</a>
+            <a th:href="@{/output}" class="nav-btn">Output</a>
+            <a th:href="@{/maintenance}" class="nav-btn">Maintenance</a>
+            <a th:href="@{/reports}" class="nav-btn">Reports</a>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content" id="mainContent">
+        <!-- Flex container for title and button -->
+        <div class="content-header">
+            <h2>View Orders</h2>
+            <button class="plus-btn" onclick="openModal()" title="Add New Order">+</button>
+        </div>
+
+        <p>Select an order to view details.</p>
+
+        <!-- Orders Table -->
+        <table class="styled-table">
+            <thead>
+            <tr>
+                <th>Order Number</th>
+                <th>Description</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Packaging Info</th>
+                <th>Items Per Box</th>
+                <th>Deadline Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td>
+                    <a th:href="@{/orders/details/{id}(id=${order.orderNumber})}"
+                       class="order-link"
+                       title="Click to view order details">
+                        <span th:text="${order.orderNumber}">1043202</span>
+                    </a>
+                </td>
+                <td th:text="${order.description}">Product bla bla</td>
+                <td th:text="${order.product}">Psp#423500</td>
+                <td th:text="${order.quantity}">500</td>
+                <td th:text="${order.packagingInfo}">300 per box</td>
+                <td th:text="${order.itemsPerBox}">300</td>
+                <td th:text="${order.deadlineDate}">2023-01-10</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<!-- Include the modal (from orders-add.html) -->
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Add New Order</h2>
+        <form th:action="@{/orders}" th:object="${orderAddDto}" method="post">
+            <div class="form-group">
+                <label for="orderNumber">Order Number:</label>
+                <input type="text" id="orderNumber" th:field="*{orderNumber}" required />
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" th:field="*{description}"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="product">Product:</label>
+                <input type="text" id="product" th:field="*{product}" required />
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" th:field="*{quantity}" min="1" required />
+            </div>
+            <div class="form-group">
+                <label for="packagingInfo">Packaging Info:</label>
+                <input type="text" id="packagingInfo" th:field="*{packagingInfo}" required />
+            </div>
+            <div class="form-group">
+                <label for="itemsPerBox">Items Per Box:</label>
+                <input type="number" id="itemsPerBox" th:field="*{itemsPerBox}" min="1" required />
+            </div>
+<!--            <div class="form-group">-->
+<!--                <label for="customer">Customer:</label>-->
+<!--                <input type="text" id="customer" th:field="*{customer}" required />-->
+<!--            </div>-->
+            <div class="form-group">
+                <label for="deadlineDate">Deadline Date:</label>
+                <input type="date" id="deadlineDate" th:field="*{deadlineDate}" />
+            </div>
+            <div>
+                <button type="submit" class="auth-btn">Submit Order</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

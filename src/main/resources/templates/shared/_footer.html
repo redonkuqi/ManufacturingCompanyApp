@@ -1,0 +1,71 @@
+<div th:fragment="footer">
+    <script>
+        function showContent(section) {
+            var content = document.getElementById('mainContent');
+            content.style.opacity = 0;
+            setTimeout(function(){
+                switch(section) {
+                    case 'orders':
+                        content.innerHTML = '<h2>Orders</h2><p>Here you can view and manage orders.</p>';
+                        break;
+                    case 'stock':
+                        content.innerHTML = '<h2>Stock</h2><p>This section shows current stock levels and inventory details.</p>';
+                        break;
+                    case 'output':
+                        content.innerHTML = '<h2>Output</h2><p>Review the production output and performance metrics here.</p>';
+                        break;
+                    case 'maintenance':
+                        content.innerHTML = '<h2>Maintenance</h2><p>Access the maintenance schedules and reports for equipment.</p>';
+                        break;
+                    case 'reports':
+                        content.innerHTML = '<h2>Reports</h2><p>Generate and review various operational reports.</p>';
+                        break;
+                    default:
+                        content.innerHTML = '<h2>Welcome</h2><p>Select an option from the sidebar to view details.</p>';
+                }
+                content.style.opacity = 1;
+            }, 300);
+        }
+
+        function setTheme(theme) {
+            if (theme === 'blue') {
+                document.documentElement.style.setProperty('--primary-color', '#357ab7');
+                document.documentElement.style.setProperty('--secondary-color', '#4fa4e4');
+                document.documentElement.style.setProperty('--sidebar-bg-start', '#AEDFF7');
+                document.documentElement.style.setProperty('--sidebar-bg-end', '#B9E6FF');
+                document.documentElement.style.setProperty('--login-gradient-start', '#4fa4e4');
+                document.documentElement.style.setProperty('--login-gradient-end', '#357ab7');
+                document.documentElement.style.setProperty('--button-gradient-start', '#3a8ecb');
+                document.documentElement.style.setProperty('--button-gradient-end', '#2a6eaa');
+                document.documentElement.style.setProperty('--page-bg', 'linear-gradient(to bottom right, #f0f8ff, #e0efff)');
+                document.documentElement.style.setProperty('--theme-btn-bg', '#fff');
+                document.documentElement.style.setProperty('--theme-btn-text', '#357ab7');
+            } else if (theme === 'green') {
+                document.documentElement.style.setProperty('--primary-color', '#2d6a4f');
+                document.documentElement.style.setProperty('--secondary-color', '#52b788');
+                document.documentElement.style.setProperty('--sidebar-bg-start', '#B7E4C7');
+                document.documentElement.style.setProperty('--sidebar-bg-end', '#95D5B2');
+                document.documentElement.style.setProperty('--login-gradient-start', '#52b788');
+                document.documentElement.style.setProperty('--login-gradient-end', '#2d6a4f');
+                document.documentElement.style.setProperty('--button-gradient-start', '#40916c');
+                document.documentElement.style.setProperty('--button-gradient-end', '#1b4332');
+                document.documentElement.style.setProperty('--page-bg', 'linear-gradient(to bottom right, #f0fff0, #e0ffe0)');
+                document.documentElement.style.setProperty('--theme-btn-bg', '#fff');
+                document.documentElement.style.setProperty('--theme-btn-text', '#2d6a4f');
+            } else if (theme === 'dark') {
+                document.documentElement.style.setProperty('--primary-color', '#f0f0f0');
+                document.documentElement.style.setProperty('--secondary-color', '#b0b0b0');
+                document.documentElement.style.setProperty('--sidebar-bg-start', '#2c2c2c');
+                document.documentElement.style.setProperty('--sidebar-bg-end', '#1c1c1c');
+                document.documentElement.style.setProperty('--login-gradient-start', '#3d3d3d');
+                document.documentElement.style.setProperty('--login-gradient-end', '#1c1c1c');
+                document.documentElement.style.setProperty('--button-gradient-start', '#555555');
+                document.documentElement.style.setProperty('--button-gradient-end', '#333333');
+                document.documentElement.style.setProperty('--page-bg', 'linear-gradient(to bottom right, #121212, #1c1c1c)');
+                document.documentElement.style.setProperty('--theme-btn-bg', '#444444');
+                document.documentElement.style.setProperty('--theme-btn-text', '#f0f0f0');
+            }
+        }
+    </script>
+    </body>
+    </html>
