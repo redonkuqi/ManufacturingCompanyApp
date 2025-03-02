@@ -14,4 +14,5 @@ public interface OrderServices {
     Order getOrder(Long id);
     List<Order> findAllOrders();
     List<OrderViewDto> findAllOrdersView();
+    OrderViewDto getOrderDetails(String orderNumber);
 }

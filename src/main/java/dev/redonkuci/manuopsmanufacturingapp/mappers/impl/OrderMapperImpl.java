@@ -1,6 +1,7 @@
 package dev.redonkuci.manuopsmanufacturingapp.mappers.impl;
 
 import dev.redonkuci.manuopsmanufacturingapp.dtos.Order.OrderAddDto;
+import dev.redonkuci.manuopsmanufacturingapp.dtos.Order.OrderViewDetailsDto;
 import dev.redonkuci.manuopsmanufacturingapp.dtos.Order.OrderViewDto;
 import dev.redonkuci.manuopsmanufacturingapp.mappers.OrderMapper;
 import dev.redonkuci.manuopsmanufacturingapp.models.entities.Order;
@@ -48,6 +49,30 @@ public class OrderMapperImpl implements OrderMapper {
         dto.setItemsPerBox(order.getItemsPerBox());
         dto.setDeadlineDate(order.getDeadlineDate());
 
+        return dto;
+    }
+
+    @Override
+    public OrderViewDetailsDto toOrderViewDetailsDto(Order order) {
+        if (order == null) {
+            return null;
+        }
+
+        OrderViewDetailsDto dto = new OrderViewDetailsDto();
+        dto.setId(order.getId());
+        dto.setOrderNumber(order.getOrderNumber());
+        dto.setCustomer(order.getCustomer());
+        dto.setItem(order.getItem());
+        dto.setProduct(order.getProduct());
+        dto.setDescription(order.getDescription());
+        dto.setQuantity(order.getQuantity());
+        dto.setPrice(order.getPrice());
+        dto.setTotalPrice(order.getTotalPrice());
+        dto.setPackagingInfo(order.getPackagingInfo());
+        dto.setItemsPerBox(order.getItemsPerBox());
+        dto.setOrderDate(order.getOrderDate());
+        dto.setDeadlineDate(order.getDeadlineDate());
+        dto.setShippingDate(order.getShippingDate());
         return dto;
     }
 

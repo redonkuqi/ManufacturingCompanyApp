@@ -3,7 +3,7 @@ function showContent(section) {
     if (!content) return;
 
     content.style.opacity = 0;
-    setTimeout(function() {
+    setTimeout(function () {
         let sectionContent = {
             'orders': '<h2>Orders</h2><p>Here you can view and manage orders.</p>',
             'stock': '<h2>Stock</h2><p>This section shows current stock levels and inventory details.</p>',
@@ -68,32 +68,37 @@ function setTheme(theme) {
 }
 
 // Modal Functions
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     var orderModal = document.getElementById("orderModal");
-    if (!orderModal) return;
+    var orderForm = document.querySelector("#orderModal form");
+    var orderDetailsModal = document.getElementById("orderDetailsModal");
 
-    // Open modal
-    window.openModal = function() {
-        orderModal.style.display = "flex";
+    // Function to open order modal
+    window.openModal = function () {
+        if (orderModal) orderModal.style.display = "flex";
     };
 
-    // Close modal
-    window.closeModal = function() {
-        orderModal.style.display = "none";
+    // Function to close order modal
+    window.closeModal = function () {
+        if (orderModal) orderModal.style.display = "none";
+    };
+
+    // Function to close details modal
+    window.closeDetailsModal = function () {
+        if (orderDetailsModal) orderDetailsModal.style.display = "none";
     };
 
     // Close modal when clicking outside of it
-    window.onclick = function(event) {
-        if (event.target === orderModal) {
-            closeModal();
-        }
+    window.onclick = function (event) {
+        if (event.target === orderModal) closeModal();
+        if (event.target === orderDetailsModal) closeDetailsModal();
     };
 
-    // Form Submission
-    var orderForm = document.querySelector("#orderModal form");
+    // Handle form submission
     if (orderForm) {
-        orderForm.addEventListener("submit", function(event) {
+        orderForm.addEventListener("submit", function (event) {
             event.preventDefault(); // Prevent default form submission
+
             fetch(orderForm.action, {
                 method: "POST",
                 body: new FormData(orderForm),
@@ -101,8 +106,25 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (response.ok) {
                     closeModal(); // Close modal on success
                     location.reload(); // Reload orders page
+                } else {
+                    console.error("Failed to submit order.");
                 }
             }).catch(error => console.error("Error submitting order:", error));
         });
     }
 });
+
+// Function to load order details dynamically
+function loadOrderDetails(orderNumber) {
+    fetch(`/orders/details/${orderNumber}`)
+        .then(response => response.text())
+        .then(html => {
+            var detailsModalContent = document.getElementById("orderDetailsContent");
+            if (detailsModalContent) {
+                detailsModalContent.innerHTML = html;
+                document.getElementById("orderDetailsModal").style.display = "flex";
+            }
+        })
+        .catch(error => console.error("Error loading order details:", error));
+}
+

@@ -63,11 +63,8 @@
             <tbody>
             <tr th:each="order : ${orders}">
                 <td>
-                    <a th:href="@{/orders/details/{id}(id=${order.orderNumber})}"
-                       class="order-link"
-                       title="Click to view order details">
-                        <span th:text="${order.orderNumber}">1043202</span>
-                    </a>
+                    <a href="#" th:text="${order.orderNumber}" th:attr="onclick='loadOrderDetails(\'' + ${order.orderNumber} + '\')'"
+                       class="order-link" title="Click to view order details"></a>
                 </td>
                 <td th:text="${order.description}">Product bla bla</td>
                 <td th:text="${order.product}">Psp#423500</td>
@@ -124,6 +121,12 @@
                 <button type="submit" class="auth-btn">Submit Order</button>
             </div>
         </form>
+    </div>
+</div>
+
+<div id="orderDetailsModal" class="modal">
+    <div id="orderDetailsContent">
+        <!-- The fragment content will be injected here dynamically -->
     </div>
 </div>
 

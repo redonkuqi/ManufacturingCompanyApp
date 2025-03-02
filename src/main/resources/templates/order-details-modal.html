@@ -1,0 +1,21 @@
+<div id="orderDetailsContent" th:fragment="orderDetailsContent">
+    <div class="modal-content">
+        <span class="close" onclick="closeDetailsModal()">&times;</span>
+        <h2>Order Details</h2>
+        <table class="styled-table" th:object="${orderDetails}">
+            <tr><td><strong>Order Number:</strong></td><td th:text="*{orderNumber}"></td></tr>
+            <tr><td><strong>Customer:</strong></td><td th:text="*{customer}"></td></tr>
+            <tr><td><strong>Item:</strong></td><td th:text="*{item}"></td></tr>
+            <tr><td><strong>Product:</strong></td><td th:text="*{product}"></td></tr>
+            <tr><td><strong>Description:</strong></td><td th:text="*{description}"></td></tr>
+            <tr><td><strong>Quantity:</strong></td><td th:text="*{quantity}"></td></tr>
+            <tr><td><strong>Price:</strong></td><td th:text="*{price}"></td></tr>
+            <tr><td><strong>Total Price:</strong></td><td th:text="*{totalPrice}"></td></tr>
+            <tr><td><strong>Packaging Info:</strong></td><td th:text="*{packagingInfo}"></td></tr>
+            <tr><td><strong>Items Per Box:</strong></td><td th:text="*{itemsPerBox}"></td></tr>
+            <tr><td><strong>Order Date:</strong></td><td th:text="*{orderDate}"></td></tr>
+            <tr><td><strong>Deadline Date:</strong></td><td th:text="*{deadlineDate}"></td></tr>
+            <tr><td><strong>Shipping Date:</strong></td><td th:text="*{shippingDate}"></td></tr>
+        </table>
+    </div>
+</div>

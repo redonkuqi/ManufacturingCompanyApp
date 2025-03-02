@@ -234,48 +234,103 @@ html, body {
 
 
 
-/* Modal styling */
+/* Order Details Modal */
 .modal {
     display: none;
     position: fixed;
-    z-index: 100;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-in-out;
 }
+
+/* Fixed Width for the Modal */
 .modal-content {
     background: #fff;
-    margin: 5% auto;
     padding: 20px;
-    border-radius: 6px;
-    width: 90%;
-    max-width: 600px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    border-radius: 12px;
+    width: 450px; /* Fixed width */
+    max-width: 90%; /* Ensures it doesn't get too big on large screens */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: slideDown 0.3s ease-in-out;
 }
+
+/* Close button styling */
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
     font-weight: bold;
+    color: #888;
     cursor: pointer;
+    transition: color 0.2s ease-in-out;
 }
 .close:hover {
-    color: #000;
+    color: var(--primary-color);
 }
-.add-order-btn {
+
+/* Order Details Table */
+.modal table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+/* Ensure text wraps instead of overflowing */
+.modal table td {
+    padding: 10px;
+    font-size: 15px;
+    word-wrap: break-word; /* Wraps long text */
+    white-space: normal; /* Ensures text doesn't force the modal to expand */
+}
+
+/* Bold labels for order details */
+.modal table td:first-child {
+    font-weight: 600;
+    color: var(--primary-color);
+    text-align: left;
+}
+
+/* Edit Button */
+.edit-btn {
+    display: block;
+    margin-top: 15px;
+    width: 100%;
     background: linear-gradient(135deg, var(--button-gradient-start), var(--button-gradient-end));
     color: #fff;
+    font-size: 16px;
+    padding: 12px;
     border: none;
     border-radius: 6px;
-    padding: 12px 24px;
-    font-size: 16px;
     cursor: pointer;
+    text-align: center;
+    transition: background 0.2s ease-in-out;
 }
-.add-order-btn:hover {
+
+.edit-btn:hover {
     background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    transform: scale(1.03);
 }
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
 
 /* Circular Plus Button (Fixed to Top Right) */
 .plus-btn {
