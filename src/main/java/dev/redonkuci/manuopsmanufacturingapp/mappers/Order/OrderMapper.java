@@ -1,11 +1,9 @@
-package dev.redonkuci.manuopsmanufacturingapp.mappers;
+package dev.redonkuci.manuopsmanufacturingapp.mappers.Order;
 
 import dev.redonkuci.manuopsmanufacturingapp.dtos.Order.OrderAddDto;
 import dev.redonkuci.manuopsmanufacturingapp.dtos.Order.OrderViewDetailsDto;
 import dev.redonkuci.manuopsmanufacturingapp.dtos.Order.OrderViewDto;
 import dev.redonkuci.manuopsmanufacturingapp.models.entities.Order;
-import org.mapstruct.Mapper;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 

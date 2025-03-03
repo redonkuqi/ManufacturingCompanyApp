@@ -1,10 +1,8 @@
-package dev.redonkuci.manuopsmanufacturingapp.controllers;
+package dev.redonkuci.manuopsmanufacturingapp.controllers.Order;
 
 import dev.redonkuci.manuopsmanufacturingapp.dtos.Order.OrderAddDto;
 import dev.redonkuci.manuopsmanufacturingapp.dtos.Order.OrderViewDetailsDto;
 import dev.redonkuci.manuopsmanufacturingapp.dtos.Order.OrderViewDto;
-import dev.redonkuci.manuopsmanufacturingapp.models.entities.Order;
-import dev.redonkuci.manuopsmanufacturingapp.repositories.OrderRepository;
 import dev.redonkuci.manuopsmanufacturingapp.services.impls.OrderServicesImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

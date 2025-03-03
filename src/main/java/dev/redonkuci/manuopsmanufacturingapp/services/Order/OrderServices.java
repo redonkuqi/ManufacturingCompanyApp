@@ -1,4 +1,4 @@
-package dev.redonkuci.manuopsmanufacturingapp.services;
+package dev.redonkuci.manuopsmanufacturingapp.services.Order;
 
 import dev.redonkuci.manuopsmanufacturingapp.dtos.Order.OrderAddDto;
 import dev.redonkuci.manuopsmanufacturingapp.dtos.Order.OrderViewDto;

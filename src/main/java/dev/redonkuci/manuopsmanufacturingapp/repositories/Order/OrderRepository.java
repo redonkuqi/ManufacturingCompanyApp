@@ -1,4 +1,4 @@
-package dev.redonkuci.manuopsmanufacturingapp.repositories;
+package dev.redonkuci.manuopsmanufacturingapp.repositories.Order;
 
 import dev.redonkuci.manuopsmanufacturingapp.models.entities.Order;
 import org.springframework.data.jpa.repository.JpaRepository;

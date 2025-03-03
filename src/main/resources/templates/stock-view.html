@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manufacturing Dashboard</title>
+    <!-- Link your CSS -->
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <!-- Link your JS -->
+    <script th:src="@{/script.js}"></script>
+</head>
+<body>
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="login-register">
+            <div class="logo">MC</div>
+            <h1>MyCompany</h1>
+            <div class="auth-buttons">
+                <button class="auth-btn">Log In</button>
+                <button class="auth-btn">Register</button>
+            </div>
+        </div>
+        <!-- Theme Selector -->
+        <div class="theme-selector">
+            <h3>Theme</h3>
+            <div class="theme-buttons">
+                <button onclick="setTheme('blue')">Blue</button>
+                <button onclick="setTheme('green')">Green</button>
+                <button onclick="setTheme('dark')">Dark</button>
+            </div>
+        </div>
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a th:href="@{/orders}" class="nav-btn">Orders</a>
+            <a th:href="@{/stock}" class="nav-btn">Stock</a>
+            <a th:href="@{/output}" class="nav-btn">Output</a>
+            <a th:href="@{/maintenance}" class="nav-btn">Maintenance</a>
+            <a th:href="@{/reports}" class="nav-btn">Reports</a>
+        </div>
+    </div>
+
+    <!-- Main Content Area (Card) -->
+    <div class="content" id="mainContent">
+        <div class="content-header">
+            <h2>View Stock</h2>
+            <button class="plus-btn" onclick="openModal()" title="Add New Order">+</button>
+        </div>
+
+        <p>Select an item to view details.</p>
+
+        <table class="styled-table">
+            <thead>
+            <tr>
+                <th>Product</th>
+                <th>Item Name</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Reorder Level</th>
+                <th>Supplier</th>
+                <th>Storage Location</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="stock : ${stock}" th:object="${stock}">
+                <td>
+                    <a href="#" th:text="*{productNumber}"
+                       th:attr="onclick='loadStockDetails(\'' + *{productNumber} + '\')'"
+                       class="order-link" title="Click to view stock details"></a>
+                </td>
+                <td th:text="*{itemName}">Item Name</td>
+                <td th:text="*{category}">Category</td>
+                <td th:text="*{quantity}">Quantity</td>
+                <td th:text="*{unit}">Unit</td>
+                <td th:text="*{reorderLevel} ?: 'N/A'">Reorder Level</td>
+                <td th:text="*{supplier} ?: 'N/A'">Supplier</td>
+                <td th:text="*{storageLocation}">Storage Location</td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+</body>
+</html>
